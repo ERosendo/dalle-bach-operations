@@ -75,9 +75,11 @@ for generation_index, generation in enumerate(range(CURRENT_GENERATION, 3)):
             pyautogui.write(' ', interval=0.25)
             pyautogui.hotkey('alt','up')
         else:
+            pyautogui.write(' ', interval=0.25)
             pyautogui.write(ROOT_FOLDER) 
             pyautogui.press('enter')
             
+            pyautogui.write(' ', interval=0.25)
             pyautogui.write(PICTURE_FOLDER) 
             pyautogui.press('enter')
 
