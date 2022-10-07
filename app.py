@@ -17,8 +17,10 @@ from utils.folder import (PICTURE_FOLDER, check_folder_distribution,
 EMAIL = os.getenv('EMAIL')
 PASSWORD = os.getenv('PASSWORD')
 ROOT_FOLDER = os.getenv('ROOT_FOLDER')
+OS = os.getenv('OS_DESCRIPTION')
 
 check_folder_distribution()
+
 db = Database()
 chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
@@ -55,14 +57,13 @@ for generation_index, generation in enumerate(range(CURRENT_GENERATION, 3)):
     current_generation_folder = get_folder_by_generation(generation)
     next_generation_path = get_path_by_generation(generation+1)
     
-    if CURRENT_GENERATION == -1:
+    if CURRENT_GENERATION<=0:
         file_list = os.listdir(source_path)
         db.load_initial_data(file_list)
         
         CURRENT_GENERATION = db.get_current_generation()
         
     file_list = db.get_current_pictures(CURRENT_GENERATION)
-        
     for index, picture in enumerate(file_list):
         
         driver.implicitly_wait(25)
@@ -73,14 +74,17 @@ for generation_index, generation in enumerate(range(CURRENT_GENERATION, 3)):
         
         if index or generation_index:
             pyautogui.write(' ', interval=0.25)
-            pyautogui.hotkey('alt','up')
+            if OS =='Windows':
+                pyautogui.hotkey('alt','up')
+            else:
+                pyautogui.hotkey('command', 'up')
         else:
             pyautogui.write(' ', interval=0.25)
-            pyautogui.write(ROOT_FOLDER) 
+            pyautogui.write(ROOT_FOLDER, interval=0.1) 
             pyautogui.press('enter')
             
             pyautogui.write(' ', interval=0.25)
-            pyautogui.write(PICTURE_FOLDER) 
+            pyautogui.write(PICTURE_FOLDER, interval=0.1) 
             pyautogui.press('enter')
 
         pyautogui.write(current_generation_folder) 

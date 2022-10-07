@@ -28,8 +28,14 @@ class Database:
         self.conn.commit()
     
     def load_initial_data(self, originals):
-        for pict in originals:
-            self.insert_new_picture(pict, 0)
+        db_data = self.get_current_pictures(0)
+        
+        if len(db_data) == len(originals):
+            return True
+         
+        if not len(db_data):
+            for pict in originals:
+                self.insert_new_picture(pict, 0)
             
     def get_current_generation(self):
         self.cursor.execute('select generation from pictures where done = 0 group by generation order by generation')
