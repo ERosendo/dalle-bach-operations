@@ -16,6 +16,7 @@ from utils.folder import (PICTURE_FOLDER, check_folder_distribution,
 
 EMAIL = os.getenv('EMAIL')
 PASSWORD = os.getenv('PASSWORD')
+ROOT_FOLDER = os.getenv('ROOT_FOLDER')
 
 check_folder_distribution()
 db = Database()
@@ -25,8 +26,6 @@ chrome_options.add_experimental_option("detach", True)
 # create webdriver object
 driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
 wait = WebDriverWait(driver, 25)
-
-
 
 # get geeksforgeeks.org
 driver.get("https://labs.openai.com/auth/login")
@@ -76,7 +75,7 @@ for generation_index, generation in enumerate(range(CURRENT_GENERATION, 3)):
             pyautogui.write(' ', interval=0.25)
             pyautogui.hotkey('alt','up')
         else:
-            pyautogui.write(r"Pictures") 
+            pyautogui.write(ROOT_FOLDER) 
             pyautogui.press('enter')
             
             pyautogui.write(PICTURE_FOLDER) 
