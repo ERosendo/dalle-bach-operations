@@ -27,12 +27,12 @@ chrome_options.add_experimental_option("detach", True)
 
 # create webdriver object
 driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
-wait = WebDriverWait(driver, 25)
+wait = WebDriverWait(driver, 45)
 
-# get geeksforgeeks.org
+# get openai website
 driver.get("https://labs.openai.com/auth/login")
 
-# get element
+# get elements
 driver.implicitly_wait(25)
 email_input = driver.find_element(By.CLASS_NAME, 'input')
 email_input.send_keys(EMAIL)
@@ -73,18 +73,15 @@ for generation_index, generation in enumerate(range(CURRENT_GENERATION, 3)):
         pyautogui.write(' ', interval=0.25)
         
         if index or generation_index:
-            pyautogui.write(' ', interval=0.25)
             if OS =='Windows':
                 pyautogui.hotkey('alt','up')
             else:
                 pyautogui.hotkey('command', 'up')
         else:
-            pyautogui.write(' ', interval=0.25)
-            pyautogui.write(ROOT_FOLDER, interval=0.1) 
+            pyautogui.write(ROOT_FOLDER) 
             pyautogui.press('enter')
             
-            pyautogui.write(' ', interval=0.25)
-            pyautogui.write(PICTURE_FOLDER, interval=0.1) 
+            pyautogui.write(PICTURE_FOLDER) 
             pyautogui.press('enter')
 
         pyautogui.write(current_generation_folder) 
