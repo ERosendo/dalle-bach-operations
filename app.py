@@ -1,4 +1,5 @@
 import os
+import platform
 import urllib.request
 
 import pyautogui
@@ -17,7 +18,7 @@ from utils.folder import (PICTURE_FOLDER, check_folder_distribution,
 EMAIL = os.getenv('EMAIL')
 PASSWORD = os.getenv('PASSWORD')
 ROOT_FOLDER = os.getenv('ROOT_FOLDER')
-OS = os.getenv('OS_DESCRIPTION')
+OS = platform.system()
 
 check_folder_distribution()
 
