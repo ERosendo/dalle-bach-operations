@@ -1,4 +1,4 @@
-# Operaciones por Lotes en Dalle
+# Operaciones por Lotes en DALL·E 2
 
 Para utilizar el script correctamente, en primer lugar, se deben instalar las dependencias correctas. Para esto se puede utilizar el archivo `requirements.txt` con el siguiente comando:
 
